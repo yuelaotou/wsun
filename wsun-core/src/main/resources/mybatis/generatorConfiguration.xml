@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!--驱动包的绝对路径 -->
+	<classPathEntry location="D:project\m2\repository\mysql\mysql-connector-java\5.1.16\mysql-connector-java-5.1.16.jar" />
+	<!--生成映射的类型，也可以生成ibatis的。 -->
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 数据库链接URL、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/wsun"
+			userId="root" password="root">
+		</jdbcConnection>
+
+		<javaTypeResolver><!-- -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!--以下三个标签主要解析targetPackage和targetProject。其它的 -->
+
+		<!--targetPackage，是生成文件所在的包路径 -->
+
+		<!--targetProject，是相对于本xml配置文件的相对路径，是targetPackage包路径的父级目录。 -->
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.wsun.entity" targetProject="wsun">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成的映射文件包名和位置 -->
+		<sqlMapGenerator targetPackage="mybatis.mysql" targetProject="wsun">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.wsun.repository.mapper" targetProject="wsun">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!--与原来mybatis-generator不一样，这个table标签不是必须的。只有对生成的映射有复杂要求时，才需要在这里详细配置  <ignoreColumn column="fred"/> <columnOverride column="BEG_DATE" property="startDate"/>  -->
+		<table tableName="wsun_unit" domainObjectName="Unit" schema="wsun" enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"></table>
+		<table tableName="wsun_user" domainObjectName="User" schema="wsun" enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"></table>
+		<table tableName="wsun_role" domainObjectName="Role" schema="wsun" enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"></table>
+		<table tableName="wsun_resource" domainObjectName="Resource" schema="wsun" enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false"></table>
+
+	</context>
+</generatorConfiguration> 

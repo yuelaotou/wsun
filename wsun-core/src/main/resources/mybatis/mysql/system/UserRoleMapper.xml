@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wsun.repository.mapper.system.UserRoleMapper" >
+  <resultMap id="BaseResultMap" type="UserRole" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="is_copy" property="isCopy" jdbcType="TINYINT" />
+    <result column="copy_user_id" property="copyUserId" jdbcType="BIGINT" />
+    <result column="begin_date" property="beginDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, role_id, is_copy, copy_user_id, begin_date, end_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from wsun_user_role
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from wsun_user_role
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="UserRole" useGeneratedKeys="true" keyProperty="id" >
+    insert into wsun_user_role (user_id, role_id, 
+      is_copy, copy_user_id, begin_date, 
+      end_date)
+    values (#{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, 
+      #{isCopy,jdbcType=TINYINT}, #{copyUserId,jdbcType=BIGINT}, #{beginDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="UserRole" useGeneratedKeys="true" keyProperty="id" >
+    insert into wsun_user_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="isCopy != null" >
+        is_copy,
+      </if>
+      <if test="copyUserId != null" >
+        copy_user_id,
+      </if>
+      <if test="beginDate != null" >
+        begin_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="isCopy != null" >
+        #{isCopy,jdbcType=TINYINT},
+      </if>
+      <if test="copyUserId != null" >
+        #{copyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="UserRole" >
+    update wsun_user_role
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="isCopy != null" >
+        is_copy = #{isCopy,jdbcType=TINYINT},
+      </if>
+      <if test="copyUserId != null" >
+        copy_user_id = #{copyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="beginDate != null" >
+        begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="UserRole" >
+    update wsun_user_role
+    set user_id = #{userId,jdbcType=BIGINT},
+      role_id = #{roleId,jdbcType=BIGINT},
+      is_copy = #{isCopy,jdbcType=TINYINT},
+      copy_user_id = #{copyUserId,jdbcType=BIGINT},
+      begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 以下为手工添加的语句 -->
+  
+  <!-- 根据用户ID删除 -->
+  <delete id="deleteByUserId" parameterType="java.lang.Long" >
+    delete from wsun_user_role
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  
+  <!-- 根据用户ID删除 -->
+  <delete id="deleteByRoleId" parameterType="java.lang.Long" >
+    delete from wsun_user_role
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </delete>
+</mapper>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wsun.repository.mapper.system.ResourceMapper">
+	<resultMap id="BaseResultMap" type="Resource">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="icon" property="icon" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="BIGINT" />
+		<result column="order_id" property="orderId" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, code, name, type, url, icon, description, parent_id, order_id
+	</sql>
+	<sql id="Base_Column_List_B">
+		b.id, b.code, b.name, b.type, b.url, b.icon, b.description, b.parent_id, b.order_id
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from wsun_resource
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from wsun_resource
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="Resource" useGeneratedKeys="true" keyProperty="id">
+		insert into wsun_resource (code, name,
+		type, url, icon, description,
+		parent_id, order_id)
+		values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+		#{parentId,jdbcType=BIGINT}, #{orderId,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="Resource" useGeneratedKeys="true" keyProperty="id">
+		insert into wsun_resource
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="code != null">
+				code,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="icon != null">
+				icon,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="parentId != null">
+				parent_id,
+			</if>
+			<if test="orderId != null">
+				order_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null">
+				#{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				#{parentId,jdbcType=BIGINT},
+			</if>
+			<if test="orderId != null">
+				#{orderId,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="Resource">
+		update wsun_resource
+		<set>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null">
+				icon = #{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId,jdbcType=BIGINT},
+			</if>
+			<if test="orderId != null">
+				order_id = #{orderId,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="Resource">
+		update wsun_resource
+		set code = #{code,jdbcType=VARCHAR},
+			name = #{name,jdbcType=VARCHAR},
+			type = #{type,jdbcType=VARCHAR},
+			url = #{url,jdbcType=VARCHAR},
+			icon = #{icon,jdbcType=VARCHAR},
+			description = #{description,jdbcType=VARCHAR},
+			parent_id = #{parentId,jdbcType=BIGINT},
+			order_id = #{orderId,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<!-- 查询根结点的菜单 -->
+	<select id="getParents" resultMap="BaseResultMap" parameterType="map">
+		SELECT
+			DISTINCT resource.id,
+			resource.`code`,
+			resource.`name`,
+			resource.url, 
+			resource.icon, 
+			resource.description, 
+			resource.parent_id, 
+			resource.order_id
+		FROM
+			wsun_user AS `user`
+		INNER JOIN wsun_user_role AS user_role ON `user`.id = user_role.user_id
+		INNER JOIN wsun_role AS role ON user_role.role_id = role.id
+		INNER JOIN wsun_role_resource AS role_resource ON role.id = role_resource.role_id
+		INNER JOIN wsun_resource AS resource ON role_resource.resource_id = resource.id
+		WHERE
+			`user`.login_name = #{loginName,jdbcType=VARCHAR}
+		AND resource.type = 'menu'
+		AND resource.parent_id IS NULL
+	</select>
+
+	<!-- 查询子节点的菜单 -->
+	<select id="getChildrenById" resultMap="BaseResultMap" parameterType="map">
+		SELECT
+			DISTINCT resource.id,
+			resource.`code`,
+			resource.`name`,
+			resource.url, 
+			resource.icon, 
+			resource.description, 
+			resource.parent_id, 
+			resource.order_id
+		FROM
+			wsun_user AS `user`
+		INNER JOIN wsun_user_role AS user_role ON `user`.id = user_role.user_id
+		INNER JOIN wsun_role AS role ON user_role.role_id = role.id
+		INNER JOIN wsun_role_resource AS role_resource ON role.id = role_resource.role_id
+		INNER JOIN wsun_resource AS resource ON role_resource.resource_id = resource.id
+		WHERE
+			`user`.login_name = #{loginName,jdbcType=VARCHAR}
+		AND resource.type = 'menu'
+		AND resource.id != #{id,jdbcType=BIGINT}
+		AND FIND_IN_SET(resource.id,getChildList(#{id,jdbcType=BIGINT}))
+	</select>
+	<!-- 获取所有资源集合 -->
+	<select id="getAll" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM wsun_resource
+		ORDER by parent_id, order_id
+	</select>
+	
+	<delete id="deleteByParentId" parameterType="java.lang.Long">
+		delete from wsun_resource
+		where parent_id = #{id,jdbcType=BIGINT}
+	</delete>
+</mapper>

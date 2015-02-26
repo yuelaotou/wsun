@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wsun.repository.mapper.system.UserMapper">
+	<resultMap id="BaseResultMap" type="User">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="unit_id" property="unit.id" jdbcType="BIGINT" />
+		<result column="login_name" property="loginName" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="salt" property="salt" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="TINYINT" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="expire_date" property="expireDate" jdbcType="TIMESTAMP" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, unit_id, login_name, name, password, salt, email, sex, mobile, telephone, status,
+		create_date,
+		expire_date, description
+	</sql>
+	<sql id="Base_Column_List_B">
+		wsun_user.id, wsun_user.unit_id, wsun_user.login_name, wsun_user.`name`, wsun_user.`password`, 
+		wsun_user.salt, wsun_user.email, wsun_user.sex, wsun_user.mobile, wsun_user.telephone, 
+		wsun_user.`status`, wsun_user.create_date, wsun_user.expire_date, wsun_user.description
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from wsun_user
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from wsun_user
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+		insert into wsun_user (unit_id, login_name,
+		name, password, salt,
+		email, sex, mobile,
+		telephone, status, create_date,
+		expire_date, description)
+		values (#{unit.id,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{mobile,jdbcType=VARCHAR},
+		#{telephone,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP},
+		#{expireDate,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+		insert into wsun_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="unit!=null and unit.id != null">
+				unit_id,
+			</if>
+			<if test="loginName != null">
+				login_name,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="salt != null">
+				salt,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="telephone != null">
+				telephone,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="expireDate != null">
+				expire_date,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="unit.id != null">
+				#{unit.id,jdbcType=BIGINT},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=TINYINT},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireDate != null">
+				#{expireDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="User">
+		update wsun_user
+		<set>
+			<if test="unit!=null and unit.id != null">
+				unit_id = #{unit.id,jdbcType=BIGINT},
+			</if>
+			<if test="loginName != null">
+				login_name = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				salt = #{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=TINYINT},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireDate != null">
+				expire_date = #{expireDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="User">
+		update wsun_user
+		set unit_id = #{unit.id,jdbcType=BIGINT},
+		login_name = #{loginName,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		salt = #{salt,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=TINYINT},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		telephone = #{telephone,jdbcType=VARCHAR},
+		status = #{status,jdbcType=TINYINT},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		expire_date = #{expireDate,jdbcType=TIMESTAMP},
+		description = #{description,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+
+	<!-- 根据登录名查询User，登录名唯一 -->
+	<select id="selectByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from wsun_user
+		where login_name = #{loginName,jdbcType=VARCHAR}
+	</select>
+	<resultMap id="BasePermissionMap" type="User">
+		<result column="login_name" property="loginName" jdbcType="VARCHAR" />
+		<result column="user_name" property="name" jdbcType="VARCHAR" />
+		<collection property="roleList" javaType="Role">
+			<result column="role_code" property="code" jdbcType="VARCHAR" />
+			<result column="role_name" property="name" jdbcType="VARCHAR" />
+			<collection property="resourceList" javaType="Resource">
+				<result column="resource_code" property="code" jdbcType="VARCHAR" />
+				<result column="resource_name" property="name" jdbcType="VARCHAR" />
+			</collection>
+		</collection>
+	</resultMap>
+	<!-- 根据登录名查询角色和资源列表 -->
+	<select id="getRoleAndResourceByLoginName" resultMap="BasePermissionMap" parameterType="java.lang.String">
+		SELECT
+			`user`.login_name,
+			`user`.`name` AS user_name,
+			role.`code` AS role_code,
+			role.`name` AS role_name,
+			resource.`code` AS resource_code,
+			resource.`name` AS resource_name
+		FROM
+			wsun_user AS `user`
+		INNER JOIN wsun_user_role AS user_role ON `user`.id = user_role.user_id
+		INNER JOIN wsun_role AS role ON user_role.role_id = role.id
+		INNER JOIN wsun_role_resource AS role_resource ON role.id = role_resource.role_id
+		INNER JOIN wsun_resource AS resource ON role_resource.resource_id = resource.id
+		WHERE
+			`user`.login_name = #{loginName,jdbcType=VARCHAR}
+	</select>
+  <!-- 以上为系统自动生成，不做任何变动，以便数据库移植 -->
+  
+	<resultMap id="WithRoleMap" extends="BaseResultMap" type="User">
+		<collection property="roleList" ofType="Role" javaType="ArrayList" column="id" select="getRoles"></collection>
+	</resultMap>
+	<!-- 根据条件查询UserList -->
+	<select id="getUserList" resultMap="WithRoleMap" parameterType="map">
+		SELECT
+			<include refid="Base_Column_List_B" />
+		FROM
+			wsun_user
+		LEFT JOIN wsun_user_role ON wsun_user.id = wsun_user_role.user_id
+		LEFT JOIN wsun_role ON wsun_user_role.role_id = wsun_role.id
+		<where>
+        	<if test="loginName!=null and loginName!=''">
+				wsun_user.login_name like '%${loginName}%'
+			</if>
+        	<if test="name!=null and name!=''">
+				wsun_user.`name` like '%${name}%'
+			</if>
+        	<if test="status!=null and status!=''">
+				wsun_user.`status` = #{status,jdbcType=TINYINT}
+			</if>
+        	<if test="roleCode!=null and roleCode!=''">
+				wsun_role.`code` like '%${roleCode}%'
+			</if>
+		</where>
+		GROUP BY wsun_user.id
+	</select>
+	<select id="getUserListCount" resultType="Integer" parameterType="User">
+		SELECT
+			count(DISTINCT wsun_user.id)
+		FROM
+			wsun_user
+		LEFT JOIN wsun_user_role ON wsun_user.id = wsun_user_role.user_id
+		LEFT JOIN wsun_role ON wsun_user_role.role_id = wsun_role.id
+		<where>
+        	<if test="loginName!=null and loginName!=''">
+				wsun_user.login_name like '%${loginName}%'
+			</if>
+        	<if test="name!=null and name!=''">
+				wsun_user.`name` like '%${name}%'
+			</if>
+        	<if test="status!=null and status!=''">
+				wsun_user.`status` = #{status,jdbcType=TINYINT}
+			</if>
+        	<if test="roleCode!=null and roleCode!=''">
+				wsun_role.`code` like '%${roleCode}%'
+			</if>
+		</where>
+	</select>
+	<!-- 查询角色信息 -->
+	<select id="getRoles" parameterType="Integer" resultType="Role">
+		SELECT
+			wsun_role.id,
+			wsun_role.`code`,
+			wsun_role.`name`
+		FROM
+			wsun_role
+		INNER JOIN wsun_user_role ON wsun_user_role.role_id = wsun_role.id
+		AND wsun_user_role.user_id = #{id,jdbcType=BIGINT}
+	</select>
+	
+	<resultMap id="UserWithRoleMap" extends="BaseResultMap" type="User">
+		<collection property="roleList" javaType="Role">
+			<result column="role_id" property="id" jdbcType="BIGINT" />
+			<result column="role_code" property="code" jdbcType="VARCHAR" />
+			<result column="role_name" property="name" jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+	
+	<!-- 查询角色信息By角色id -->
+	<select id="getUserDetailById" resultMap="UserWithRoleMap" parameterType="java.lang.Long" >
+		SELECT
+			`user`.id,
+			`user`.unit_id,
+			`user`.login_name,
+			`user`.`name`,
+			`user`.`password`,
+			`user`.salt,
+			`user`.email,
+			`user`.sex,
+			`user`.mobile,
+			`user`.telephone,
+			`user`.`status`,
+			`user`.create_date,
+			`user`.expire_date,
+			`user`.description,
+			role.id AS role_id,
+			role.`code` AS role_code,
+			role.`name` AS role_name
+		FROM
+			wsun_user AS `user`
+		LEFT JOIN wsun_user_role AS user_role ON `user`.id = user_role.user_id
+		LEFT JOIN wsun_role AS role ON user_role.role_id = role.id
+		WHERE
+			`user`.id = #{id,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 更新用户的组织机构到根组织机构中 -->
+	<update id="updateUnit" parameterType="java.lang.Long">
+		update wsun_user
+		set unit_id = 1
+		where unit_id = #{unitId,jdbcType=BIGINT}
+	</update>
+</mapper>
