@@ -26,7 +26,7 @@
 				if (error.contains("DisabledAccountException")) {
 						out.print("用户已被屏蔽,请登录其他用户.");
 					} else {
-						out.print("登录失败，请重试.");
+						out.println("登录失败，请重试.");
 						out.print(error);
 					}
 			%>

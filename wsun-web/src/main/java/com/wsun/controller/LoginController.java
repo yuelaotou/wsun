@@ -1,14 +1,11 @@
 package com.wsun.controller;
 
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.wsun.service.system.UserService;
 
 /**
  * LoginController负责打开登录页面(GET请求)和登录出错页面(POST请求)，
@@ -19,9 +16,6 @@ import com.wsun.service.system.UserService;
  */
 @Controller
 public class LoginController {
-
-	@Autowired
-	private UserService userService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {

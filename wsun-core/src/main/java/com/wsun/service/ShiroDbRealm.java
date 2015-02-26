@@ -20,6 +20,8 @@ package com.wsun.service;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,6 +37,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.base.Objects;
 import com.wsun.common.utils.Encodes;
@@ -47,8 +50,12 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 	private static final Logger logger = LogManager.getLogger(ShiroDbRealm.class);
 
-	// @Autowired
-	// private UserService userService;
+	@Autowired
+	private UserService userService;
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 
 	/**
 	 * 认证回调函数,登录时调用.
@@ -56,8 +63,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		// User user = userService.getByLoginName(token.getUsername());
-		User user = new User();
+		User user = userService.getByLoginName(token.getUsername());
 		logger.info("通过登录用户名查询用户：" + token.getUsername() + "，结果为：" + JsonUtil.toJson(user));
 		if (user != null) {
 			if (user.getStatus() == 0) {
@@ -77,8 +83,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
-		// User user = userService.getRoleAndResourceByLoginName(shiroUser.loginName);
-		User user = new User();
+		User user = userService.getRoleAndResourceByLoginName(shiroUser.loginName);
 		logger.info("根据登录名查询角色和资源列表，用户：" + shiroUser.loginName + "，结果为：" + JsonUtil.toJson(user));
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		for (Role role : user.getRoleList()) {
@@ -96,6 +101,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	/**
 	 * 设定Password校验的Hash算法与迭代次数.
 	 */
+	@PostConstruct
 	public void initCredentialsMatcher() {
 		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(UserService.HASH_ALGORITHM);
 		matcher.setHashIterations(UserService.HASH_INTERATIONS);
