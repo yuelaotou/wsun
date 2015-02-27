@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
 	default-lazy-init="true">
 
 	<description>Shiro安全配置</description>
@@ -14,7 +12,9 @@
 	</bean>
 
 	<!-- 项目自定义的Realm, 所有userService依赖的mapper都需要用depends-on声明 -->
-	<bean id="shiroDbRealm" class="com.wsun.service.ShiroDbRealm" />
+	<bean id="shiroDbRealm" class="com.wsun.service.ShiroDbRealm">
+		<property name="userService" ref="userService" />
+	</bean>
 
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -34,7 +34,7 @@
 
 	<!-- 用户授权信息Cache, 采用EhCache -->
 	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-		<property name="cacheManagerConfigFile" value="classpath:spring-ehcache.xml" />
+		<property name="cacheManagerConfigFile" value="classpath:spring-shiro-ehcache.xml" />
 	</bean>
 
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->

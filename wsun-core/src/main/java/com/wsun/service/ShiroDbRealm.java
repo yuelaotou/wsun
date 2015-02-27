@@ -50,9 +50,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
 	private static final Logger logger = LogManager.getLogger(ShiroDbRealm.class);
 
-	@Autowired
 	private UserService userService;
 
+	@Autowired
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
