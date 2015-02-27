@@ -54,7 +54,6 @@ public abstract class PageUtil {
 				String sortName = (String) Reflections.getFieldValue(page, SORT_NAME + col);
 				String sName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, sortName);
 				String sortDir = (String) Reflections.getFieldValue(page, SORT_DIR + i);
-				System.out.println("排序情况：" + col + ", " + sName + ", " + sortDir);
 				sortItemMap.put(sName, sortDir);
 			}
 			parameterMap.put("_sorts", sortItemMap);

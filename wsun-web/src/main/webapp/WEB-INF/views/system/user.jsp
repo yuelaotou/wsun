@@ -6,7 +6,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#contentTable').dataTable({
-			"iDisplayLength" : 1,
+			"iDisplayLength" : 10,
 			"bProcessing" : true,
 			"bServerSide" : true,
 			"sAjaxSource" : "${ctx}/system/user/list",

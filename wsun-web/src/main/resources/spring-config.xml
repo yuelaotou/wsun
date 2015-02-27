@@ -36,8 +36,8 @@
 	<!-- 定义aspectj -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 
-	<!-- required -->
-	<import resource="spring-config-tx.xml" />
+	<!-- 引入其他配置文件 -->
 	<import resource="spring-config-shiro.xml" />
+	<import resource="spring-config-tx.xml" />
 
 </beans>

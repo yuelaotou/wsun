@@ -45,65 +45,42 @@
 	<!--top-Header-menu-->
 	<div id="user-nav" class="navbar">
 		<ul class="nav">
-			<li>
-				<a href="#">
-					<i class="icon icon-user"></i> <span class="text">Welcome $!userName</span><b class="caret"></b>
-				</a>
+			<li><a href="#"> <i class="icon icon-user"></i> <span class="text">Welcome $!userName</span><b class="caret"></b>
+			</a>
 				<ul>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/home', this);">
-							<i class="icon-user"></i> 我的主页
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/task', this);">
-							<i class="icon-check"></i> 我的任务
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/logout', this);">
-							<i class="icon-key"></i> 退出
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<a href="#">
-					<i class="icon icon-envelope"></i> <span class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b>
-				</a>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/home', this);"> <i class="icon-user"></i>
+							我的主页
+					</a></li>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/task', this);"> <i class="icon-check"></i>
+							我的任务
+					</a></li>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/logout', this);"> <i class="icon-key"></i>
+							退出
+					</a></li>
+				</ul></li>
+			<li><a href="#"> <i class="icon icon-envelope"></i> <span class="text">消息</span> <span
+					class="label label-important">5</span> <b class="caret"></b>
+			</a>
 				<ul>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/message/news', this);">
-							<i class="icon-plus"></i> 新消息
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/message/inbox', this);">
-							<i class="icon-envelope"></i> 收件箱
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/message/outbox', this);">
-							<i class="icon-arrow-up"></i> 发件箱
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/message/recycle', this);">
-							<i class="icon-trash"></i> 回收站
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li class="">
-				<a href="javascript:void(0)" onclick="upContent('content', '/setting', this);">
-					<i class="icon icon-cog"></i> <span class="text">设置</span>
-				</a>
-			</li>
-			<li class="">
-				<a href="javascript:void(0)" onclick="upContent('content', '/lougou', this);">
-					<i class="icon icon-share-alt"></i> <span class="text">退出</span>
-				</a>
-			</li>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/message/news', this);"> <i
+							class="icon-plus"></i> 新消息
+					</a></li>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/message/inbox', this);"> <i
+							class="icon-envelope"></i> 收件箱
+					</a></li>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/message/outbox', this);"> <i
+							class="icon-arrow-up"></i> 发件箱
+					</a></li>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/message/recycle', this);"> <i
+							class="icon-trash"></i> 回收站
+					</a></li>
+				</ul></li>
+			<li class=""><a href="javascript:void(0)" onclick="upContent('content', '/setting', this);"> <i
+					class="icon icon-cog"></i> <span class="text">设置</span>
+			</a></li>
+			<li class=""><a href="javascript:void(0)" onclick="upContent('content', '/lougou', this);"> <i
+					class="icon icon-share-alt"></i> <span class="text">退出</span>
+			</a></li>
 		</ul>
 	</div>
 	<!--close-top-Header-menu-->
@@ -117,69 +94,45 @@
 	<!--close-top-serch-->
 	<!--sidebar-menu-->
 	<div id="sidebar">
-		<a href="#" class="visible-xs">
-			<i class="icon icon-home"></i> 配送员主页
+		<a href="#" class="visible-xs"> <i class="icon icon-home"></i> 配送员主页
 		</a>
 		<ul>
-			<li class="active">
-				<a href="/">
-					<i class="icon icon-home"></i> <span>代办事项</span>
-				</a>
-			</li>
-			<li>
-				<a href="javascript:void(0)" onclick="upContent('content', '/gift/list', this);">
-					<i class="icon icon-signal"></i> <span>礼物管理</span>
-				</a>
-			</li>
-			<li>
-				<a href="javascript:void(0)" onclick="upContent('content', '/label/list', this);">
-					<i class="icon icon-inbox"></i> <span>标签管理</span>
-				</a>
-			</li>
-			<li class="submenu">
-				<a href="#">
-					<i class="icon icon-th-list"></i> <span>后台管理</span> <span class="label label-important">3</span>
-				</a>
+			<li class="active"><a href="/"> <i class="icon icon-home"></i> <span>代办事项</span>
+			</a></li>
+			<li><a href="javascript:void(0)" onclick="upContent('content', '/system/resource', this);"> <i
+					class="icon icon-signal"></i> <span>资源管理</span>
+			</a></li>
+			<li><a href="javascript:void(0)" onclick="upContent('content', '/label/list', this);"> <i
+					class="icon icon-inbox"></i> <span>标签管理</span>
+			</a></li>
+			<li class="submenu"><a href="#"> <i class="icon icon-th-list"></i> <span>后台管理</span> <span
+					class="label label-important">3</span>
+			</a>
 				<ul>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/redis/list', this);">
-							<i class="icon icon-tint"></i> <span>缓存管理</span>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/redis/list', this);">
-							<i class="icon icon-tint"></i> <span>缓存管理</span>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/calcPic/list');">
-							<i class="icon icon-pencil"></i> <span>图片计算尺寸</span>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)" onclick="upContent('content', '/handleDuplicateData/list');">
-							<i class="icon icon-file"></i> <span>数据处理</span>
-						</a>
-					</li>
-				</ul>
-			</li>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/system/resource', this);"> <i
+							class="icon icon-tint"></i> <span>资源管理</span>
+					</a></li>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/system/user', this);"> <i
+							class="icon icon-tint"></i> <span>用户管理</span>
+					</a></li>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/system/role');"> <i
+							class="icon icon-pencil"></i> <span>角色管理</span>
+					</a></li>
+					<li><a href="javascript:void(0)" onclick="upContent('content', '/system/unit');"> <i
+							class="icon icon-file"></i> <span>组织机构管理</span>
+					</a></li>
+				</ul></li>
 
-			<li class="content">
-				<span>Monthly Bandwidth Transfer</span>
+			<li class="content"><span>Monthly Bandwidth Transfer</span>
 				<div class="progress progress-mini progress-danger active progress-striped">
 					<div style="width: 77%;" class="bar"></div>
-				</div>
-				<span class="percent">77%</span>
-				<div class="stat">21419.94 / 14000 MB</div>
-			</li>
-			<li class="content">
-				<span>Disk Space Usage</span>
+				</div> <span class="percent">77%</span>
+				<div class="stat">21419.94 / 14000 MB</div></li>
+			<li class="content"><span>Disk Space Usage</span>
 				<div class="progress progress-mini active progress-striped">
 					<div style="width: 87%;" class="bar"></div>
-				</div>
-				<span class="percent">87%</span>
-				<div class="stat">604.44 / 4000 MB</div>
-			</li>
+				</div> <span class="percent">87%</span>
+				<div class="stat">604.44 / 4000 MB</div></li>
 		</ul>
 	</div>
 	<!--sidebar-menu-->
@@ -189,11 +142,8 @@
 		<!--breadcrumbs-->
 		<div id="content-header">
 			<div id="breadcrumb">
-				<a href="index.html" title="Go Home" class="tip-bottom">
-					<i class="icon-home"></i> Home
-				</a>
-				<a href="#">Form elements</a>
-				<a href="#" class="current">Validation</a>
+				<a href="index.html" title="Go Home" class="tip-bottom"> <i class="icon-home"></i> Home
+				</a> <a href="#">Form elements</a> <a href="#" class="current">Validation</a>
 			</div>
 		</div>
 		<!--End-breadcrumbs-->
@@ -202,56 +152,28 @@
 		<div class="container-fluid">
 			<div class="quick-actions_homepage">
 				<ul class="quick-actions">
-					<li class="bg_lb">
-						<a href="index.html">
-							<i class="icon-dashboard"></i> <span class="label label-important">20</span> 代办事项
-						</a>
-					</li>
-					<li class="bg_lg span3">
-						<a href="charts.html">
-							<i class="icon-signal"></i> 礼物管理
-						</a>
-					</li>
-					<li class="bg_ly">
-						<a href="widgets.html">
-							<i class="icon-inbox"></i><span class="label label-success">101</span> 标签管理
-						</a>
-					</li>
-					<li class="bg_lo">
-						<a href="tables.html">
-							<i class="icon-th"></i> 缓存管理
-						</a>
-					</li>
-					<li class="bg_ls">
-						<a href="grid.html">
-							<i class="icon-fullscreen"></i> 图片计算尺寸
-						</a>
-					</li>
-					<li class="bg_lo span3">
-						<a href="form-common.html">
-							<i class="icon-th-list"></i> 数据处理
-						</a>
-					</li>
-					<li class="bg_ls">
-						<a href="buttons.html">
-							<i class="icon-tint"></i> 备用管理
-						</a>
-					</li>
-					<li class="bg_lb">
-						<a href="interface.html">
-							<i class="icon-pencil"></i>备用管理
-						</a>
-					</li>
-					<li class="bg_lg">
-						<a href="calendar.html">
-							<i class="icon-calendar"></i> 备用管理
-						</a>
-					</li>
-					<li class="bg_lr">
-						<a href="error404.html">
-							<i class="icon-info-sign"></i> 备用管理
-						</a>
-					</li>
+					<li class="bg_lb"><a href="index.html"> <i class="icon-dashboard"></i> <span class="label label-important">20</span>
+							代办事项
+					</a></li>
+					<li class="bg_lg span3"><a href="charts.html"> <i class="icon-signal"></i> 礼物管理
+					</a></li>
+					<li class="bg_ly"><a href="widgets.html"> <i class="icon-inbox"></i><span class="label label-success">101</span>
+							标签管理
+					</a></li>
+					<li class="bg_lo"><a href="tables.html"> <i class="icon-th"></i> 缓存管理
+					</a></li>
+					<li class="bg_ls"><a href="grid.html"> <i class="icon-fullscreen"></i> 图片计算尺寸
+					</a></li>
+					<li class="bg_lo span3"><a href="form-common.html"> <i class="icon-th-list"></i> 数据处理
+					</a></li>
+					<li class="bg_ls"><a href="buttons.html"> <i class="icon-tint"></i> 备用管理
+					</a></li>
+					<li class="bg_lb"><a href="interface.html"> <i class="icon-pencil"></i>备用管理
+					</a></li>
+					<li class="bg_lg"><a href="calendar.html"> <i class="icon-calendar"></i> 备用管理
+					</a></li>
+					<li class="bg_lr"><a href="error404.html"> <i class="icon-info-sign"></i> 备用管理
+					</a></li>
 
 				</ul>
 			</div>
@@ -274,8 +196,8 @@
 									<div class="article-post">
 										<span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
 										<p>
-											<a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the
-												comment.</a>
+											<a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is
+												full of waffle to pad out the comment.</a>
 										</p>
 									</div>
 								</li>
@@ -286,8 +208,8 @@
 									<div class="article-post">
 										<span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
 										<p>
-											<a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the
-												comment.</a>
+											<a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is
+												full of waffle to pad out the comment.</a>
 										</p>
 									</div>
 								</li>
@@ -316,8 +238,7 @@
 
 	<div class="row-fluid">
 		<div id="footer" class="span12">
-			2014 &copy; Delivery Man. Brought to you by
-			<a href="http://www.jd.com">JD.COM</a>
+			2014 &copy; Delivery Man. Brought to you by <a href="http://www.jd.com">JD.COM</a>
 		</div>
 	</div>
 
